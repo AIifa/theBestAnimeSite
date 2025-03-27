@@ -9,27 +9,14 @@
   </div>
 </template>
 <script setup lang="ts">
-const selectData = [
-  {
-    label: "Первая строка",
-    tab: 0, // какая-нибудь ссылка на требуемый раздел (айдишник/ссылка/етс)
-  },
-  {
-    label: "Прочее",
-    children: [
-      {
-        label: "Вложенная строка",
-        tab: 1,
-      },
-    ],
-  },
-];
+
 </script>
 <style lang="scss" scoped>
 .app-header {
+  color: $app-header-text-color;
   width: 100%; // vw?
   height: 50px;
-  background-color: #4a1d55;
+  background-color: $main-color;
 
   display: flex;
   justify-content: space-between;
@@ -37,7 +24,7 @@ const selectData = [
 }
 .login {
   height: 100%;
-  background-color: #5d266b;
+  background-color: $main-color;
   padding: 0px 30px;
 }
 </style>

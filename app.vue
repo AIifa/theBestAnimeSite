@@ -4,8 +4,5 @@
     <NuxtPage />
   </div>
 </template>
-<style>
-body {
-  margin: 0px;
-}
-</style>
+
+<style lang="scss" src="assets/style.scss"></style>
