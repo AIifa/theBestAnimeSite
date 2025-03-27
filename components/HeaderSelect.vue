@@ -96,6 +96,7 @@ const show = ref(false);
   padding: 0 10px;
 
   .triangle-icon {
+    filter: invert(97%) sepia(5%) saturate(1187%) hue-rotate(302deg) brightness(109%) contrast(109%); // делает дефолтный черный цвет треугольника белым
     width: 10px;
     height: 10px;
     background-image: url('~/assets/triangle.svg');
@@ -103,11 +104,12 @@ const show = ref(false);
     background-repeat: no-repeat;
     background-position: center;
     transform: rotate(180deg);
-
-    .active {
-      transform: rotate(0deg);
-    }
+    transition: transform 0.5s;
   }
+}
+.dropdown:hover .triangle-icon {
+  transform: rotate(270deg);
+  transition: transform 0.5s;
 }
 
 .dropdown-items {
