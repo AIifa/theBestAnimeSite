@@ -1,27 +1,21 @@
 <template>
   <div class="dropdown">
-    <div 
-      class="current-dropdown-item"
-      @mouseover="show = true"
-      @mouseout="show = false"
-    >
+    <div class="current-dropdown-item">
       <span>{{ current.name }}</span>
       <div class="triangle-icon"></div>
     </div>
 
-    <div 
-      v-show="show" 
-      class="dropdown-items"
-      @mouseover="show = true"
-      @mouseout="show = false"
-    >
+    <div class="dropdown-items">
       <template v-for="item in data" :key="item.name + 'block'">
         <div class="dropdown-item-header">
           <span> {{ item.name }} </span>
         </div>
 
         <template v-for="el in item.refs" :key="el.name + 'item-block'"> 
-          <a class="dropdown-item-link" :href='el.ref'>
+          <a 
+            class="dropdown-item-link" 
+            @click="goToPage(el)"
+          >
             <div>
               <span> {{ el.name }} </span>
             </div>
@@ -33,24 +27,32 @@
 </template>
 
 <script setup lang="ts">
+interface DropdownItem {
+  name: string,
+  ref: string,
+};
+interface Dropdown {
+  name: string,
+  refs: DropdownItem[],
+};
 
+const emits = defineEmits(['switch-page']);
 
-
-const data = ref([
+const data = ref<Dropdown[]>([
   {
     name: 'Основное',
     refs: [
       {
         name: 'Аниме',
-        ref: 'temp URL 1',
+        ref: 'anime',
       },
       {
         name: 'Манга',
-        ref: 'temp URL 1',
+        ref: 'manga',
       },
       {
         name: 'Ранобэ',
-        ref: 'temp URL 1',
+        ref: 'ranobe',
       },
     ]
   },
@@ -78,6 +80,13 @@ const current = ref({
 });
 
 const show = ref(false);
+
+const router = useRouter();
+const goToPage = async (page: DropdownItem) => {
+  current.value.name = page.name;
+  emits('switch-page', page);
+  await navigateTo(`/${ page.ref }`)
+};
 </script>
 
 <style lang="scss" scoped>
@@ -85,6 +94,16 @@ const show = ref(false);
   height: 100%;
   width: 100px;
   position: relative;
+
+  &:hover { 
+    .triangle-icon {
+      transform: rotate(180deg);
+      transition: transform 0.5s;
+    }
+    .dropdown-items {
+      display: block;
+    }
+  }
 }
 
 .current-dropdown-item {
@@ -94,31 +113,27 @@ const show = ref(false);
   align-content: center;
   height: 100%;
   padding: 0 10px;
-
-  .triangle-icon {
-    filter: invert(97%) sepia(5%) saturate(1187%) hue-rotate(302deg) brightness(109%) contrast(109%); // делает дефолтный черный цвет треугольника белым
-    width: 10px;
-    height: 10px;
-    background-image: url('~/assets/triangle.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transform: rotate(180deg);
-    transition: transform 0.5s;
-  }
 }
-.dropdown:hover .triangle-icon {
-  transform: rotate(270deg);
+
+.triangle-icon {
+  filter: invert(97%) sepia(5%) saturate(1187%) hue-rotate(302deg) brightness(109%) contrast(109%); // делает дефолтный черный цвет треугольника белым
+  width: 20px;
+  height: 20px;
+  background-image: url('~/assets/triangle.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   transition: transform 0.5s;
 }
 
 .dropdown-items {
+  display: none;
   width: 100px;
 }
 
 .dropdown-item-header {
   text-align: start;
-  height: 25px;
+  height: calc($app-header-height / 2);
   background-color: $main-color;
   padding: 0 10px;
 }
@@ -132,7 +147,7 @@ const show = ref(false);
   div {
     align-content: center;
     background-color: $main-color;
-    height: 50px;
+    height: $app-header-height;
     padding: 0 10px;
 
     &:hover {
