@@ -79,9 +79,6 @@ const current = ref({
   name: 'Главная',
 });
 
-const show = ref(false);
-
-const router = useRouter();
 const goToPage = async (page: DropdownItem) => {
   current.value.name = page.name;
   emits('switch-page', page);
@@ -91,17 +88,21 @@ const goToPage = async (page: DropdownItem) => {
 
 <style lang="scss" scoped>
 .dropdown {
+  cursor: default;
   height: 100%;
   width: 100px;
   position: relative;
 
   &:hover { 
+    background-color: $display-color;
+
     .triangle-icon {
       transform: rotate(180deg);
       transition: transform 0.5s;
     }
     .dropdown-items {
       display: block;
+      background-color: $display-color;
     }
   }
 }
@@ -116,7 +117,6 @@ const goToPage = async (page: DropdownItem) => {
 }
 
 .triangle-icon {
-  filter: invert(97%) sepia(5%) saturate(1187%) hue-rotate(302deg) brightness(109%) contrast(109%); // делает дефолтный черный цвет треугольника белым
   width: 20px;
   height: 20px;
   background-image: url('~/assets/triangle.svg');
@@ -129,24 +129,23 @@ const goToPage = async (page: DropdownItem) => {
 .dropdown-items {
   display: none;
   width: 100px;
+  background-color: $main-color;
 }
 
 .dropdown-item-header {
   text-align: start;
   height: calc($app-header-height / 2);
-  background-color: $main-color;
   padding: 0 10px;
 }
 
 .dropdown-item-link {
+  cursor: pointer;
   text-align: end;
   text-decoration: none;
-  cursor: pointer;
   color: unset;
 
   div {
     align-content: center;
-    background-color: $main-color;
     height: $app-header-height;
     padding: 0 10px;
 

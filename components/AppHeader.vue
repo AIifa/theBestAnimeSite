@@ -26,5 +26,9 @@
   height: 100%;
   background-color: $main-color;
   padding: 0px 30px;
+
+  &:hover {
+    background-color: $focus-color;
+  }
 }
 </style>
