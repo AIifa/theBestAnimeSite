@@ -3,7 +3,12 @@
     <AppHeader
       @switch-page="switchPage"
     />
-    <NuxtPage />
+    <LoadingScreen>
+      <template #page>
+        <p>Test 0000</p>
+        <NuxtPage />
+      </template>
+    </LoadingScreen>
   </div>
 </template>
 <script setup lang="ts">
