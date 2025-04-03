@@ -4,7 +4,7 @@
     <HeaderSelect />
     <SearchInput />
     <button @click="login" class="login">
-      <p>Login</p>
+      <p>Войти</p>
     </button>
   </div>
 </template>
