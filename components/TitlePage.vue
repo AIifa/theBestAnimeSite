@@ -27,6 +27,7 @@
             <span> Статус: {{ titleData?.information.status }} </span>
             <span> Жанры: {{ titleData?.information.genres }} </span>
             <span> Тема: {{ titleData?.information.theme }} </span>
+            <span> Лицензия: {{ titleData?.information.license }} </span>
           </div>
         </div>
 
@@ -35,7 +36,16 @@
             <span> Рейтинг </span> 
           </div>
           <div class="content-container">
-            <span> Тип: {{ titleData?.information.type }} </span>
+            <span>☆☆☆☆ Рейтинг: {{ titleData?.review }} </span>
+          </div>
+        </div>
+
+        <div class="content-publisher">
+          <div class="header-container"> 
+            <span> Издатель </span> 
+          </div>
+          <div class="content-container">
+            <span> Издатель: {{ titleData?.publisher }} </span>
           </div>
         </div>
 
@@ -79,7 +89,7 @@ const mockData: Title = {
     license: 'Лицензия',
     altName: 'Альтернативное название',
   },
-  description: 'описание тайтла',
+  description: 'Отгромыхали салюты и аплодисменты, заглохли радостные крики ликующей толпы, съеден торжественный ужин, награды получены: герои, долго и упорно шедшие к исполнению цели, добились своего. Зло побеждено, невинные спасены и... что дальше? Наверное, надо как-то возвращаться к мирной жизни, да? Подобным вопросом задаётся Фрирен — член команды, одолевшей Короля Демонов. Она не герой, а — маг, и не человек, а — эльф, практически ничего не роднит её с остальными членами группы, к тому же ей отмерен гораздо больший жизненный срок, и ей суждено пережить своих былых товарищей...',
   publisher: 'Издатель',
   review: 8.8, // Рейтинг тайтла
   related: 'связи', // Подумать как сделать
@@ -124,6 +134,7 @@ onMounted(() => {
 .title-content {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
 }
 

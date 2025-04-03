@@ -1,18 +1,28 @@
 <template>
   <div class="app-header">
-    <div class="logo" @click="async () => await navigateTo(`/`)">the Best Anime Site</div>
+    <div
+      class="logo" 
+      @click="async () => await navigateTo(`/`)"
+    > 
+      <span>the Best Anime Site </span>
+    </div>
     <HeaderSelect />
     <SearchInput />
-    <button @click="login" class="login">
+    <button 
+      class="login"
+      @click="login"
+    >
       <p>Войти</p>
     </button>
   </div>
 </template>
+
 <script setup lang="ts">
 
 const login = () => { console.log("Login"); }; // заглушка на будущее
 
 </script>
+
 <style lang="scss" scoped>
 .app-header {
   color: $app-header-text-color;
@@ -24,7 +34,13 @@ const login = () => { console.log("Login"); }; // заглушка на буду
   justify-content: space-between;
   align-items: center;
 }
+
 .logo {
+  cursor: pointer;
+  
+  align-content: center;
+  height: 100%;
+
   margin-left: 10px;
   margin-right: 5px;
   white-space: nowrap;
@@ -40,6 +56,7 @@ const login = () => { console.log("Login"); }; // заглушка на буду
   text-decoration-color: $second-color;
   font-family: Trattatello fantasy;
 }
+
 .login {
   height: 100%;
   color: $app-header-text-color;
