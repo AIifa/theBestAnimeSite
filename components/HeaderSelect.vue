@@ -87,11 +87,14 @@ const goToPage = async (page: DropdownItem) => {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:color";
+
 .dropdown {
   cursor: default;
   height: 100%;
   width: 100px;
   position: relative;
+  background-color: color.scale($display-color, $alpha: -50%); // чтоб выделялось, но не как прям при наведении
 
   &:hover { 
     background-color: $display-color;
