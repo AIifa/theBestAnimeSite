@@ -10,6 +10,7 @@
     </LoadingScreen>
   </div>
 </template>
+
 <script setup lang="ts">
 const loaded = ref<Boolean>(false);
 
@@ -17,4 +18,5 @@ const switchPage = (page) => {
   
 };
 </script>
+
 <style lang="scss" src="assets/style.scss"></style>

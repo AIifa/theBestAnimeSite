@@ -28,9 +28,9 @@ const props = defineProps(['loaded']);
     font-weight: bold;
     font-family: sans-serif;
     font-size: 30px;
-    animation: l1 1s linear infinite alternate;
+    // animation: l1 1s linear infinite alternate;
   }
-  @keyframes l1 {to{opacity: 0}}
+  // @keyframes l1 {to{opacity: 0}}
 }
 
 </style>

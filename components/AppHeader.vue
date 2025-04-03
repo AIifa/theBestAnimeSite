@@ -1,6 +1,6 @@
 <template>
   <div class="app-header">
-    <div class="logo">SOME COOL LOGO</div>
+    <div class="logo" @click="async () => await navigateTo(`/`)">SOME COOL LOGO</div>
     <HeaderSelect />
     <SearchInput />
     <div class="login">
