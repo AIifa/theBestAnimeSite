@@ -1,14 +1,14 @@
 <template>
   <div>
     <slot name="page"></slot>
-    <div v-show="!loaded" class="loader" @loading="console.log('got it!'); loaded = false">
+    <div v-show="!loaded" class="loader">
       <p>Loading...</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const loaded = ref<Boolean>(true);
+const props = defineProps(['loaded']);
 
 </script>
 
@@ -18,7 +18,7 @@ const loaded = ref<Boolean>(true);
   height: 100%;
   position: absolute;
   top: 0;
-  background-color: rgb(220, 220, 220);
+  background-color: $second-color;
 
   text-align: center;
   align-content: center;

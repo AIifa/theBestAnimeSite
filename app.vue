@@ -3,15 +3,16 @@
     <AppHeader
       @switch-page="switchPage"
     />
-    <LoadingScreen>
+    <LoadingScreen :loaded="loaded">
       <template #page>
-        <p>Test 0000</p>
-        <NuxtPage />
+        <NuxtPage @loading="console.log('Page loaded'); loaded = true" />
       </template>
     </LoadingScreen>
   </div>
 </template>
 <script setup lang="ts">
+const loaded = ref<Boolean>(false);
+
 const switchPage = (page) => {
   
 };
