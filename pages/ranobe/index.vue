@@ -1,6 +1,7 @@
 <template>
   <div class="page" @click="async () => await navigateTo(`/ranobe/1`)">
     <p>ranobe</p>
+    <TitlesList />
   </div>
 </template>
 
@@ -13,3 +14,8 @@ onMounted(() => {
   setTimeout(function() { emits('loading'); }, 3000);
 })
 </script>
+<style scoped lang="scss">
+.page {
+  padding: 0px 70px;
+}
+</style>
