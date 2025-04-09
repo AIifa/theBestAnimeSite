@@ -1,5 +1,5 @@
 <template>
-	<div class="review-content">
+	<div v-if="props.review" class="review-content">
 		<div class="review-stars-container"> 
 			<div class="review-stars-background"> {{ starsSymbols }} </div>
 			<div 
@@ -9,11 +9,13 @@
 		</div>
 
 		<div class="review-score"> 
-			<span> {{ props.review }} </span>
+			<span> {{ reviewScore }} </span>
 		</div>
 
 		<div class="awards">
-			<span> {{ props.awards }} </span>
+			<div v-for="award in props.awards" :key="award + 'awards'">
+        <span> {{ award }} </span>
+      </div>
 		</div>
 	</div>
 </template>
@@ -22,7 +24,7 @@
 const props = defineProps({
 	review: {
 		type: Number,
-		default: 10,
+		default: 0,
 	},
 	awards: {
 		type: Array,
@@ -30,25 +32,20 @@ const props = defineProps({
 	}
 });
 
-// watch(props.review, (err, result) => { 
-// 	return result; 
-// });
-
-const stars = useTemplateRef<HTMLDivElement>('stars');
 const starsSymbols = '★★★★★';
 
-// const starsForeground = computed(() => {
-// 	setWidthStars();
-// 	return starsBackground;
-// });
+const stars = useTemplateRef<HTMLDivElement>('stars');
 const setWidthStars = () => {
-	const score = props.review;
-	const width = Number(stars.value?.clientWidth);
-	stars.value?.style.setProperty('width', `${score * width / 10}px`);
+  const width = Number(stars.value?.clientWidth);
+	stars.value?.style.setProperty('width', `${props.review * width / 10}px`);
 };
 
-onMounted(() => {
-	setWidthStars();
+const reviewScore = computed(() => {
+  return props.review.toFixed(2);
+});
+
+onUpdated(() => {
+  setWidthStars();
 });
 </script>
 
