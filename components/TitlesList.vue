@@ -7,44 +7,62 @@
 <script setup lang="ts">
 import testImage from '../assets/friren.webp';
 const testName = "Название крутого тайтла";
-const testLink = "ссылка";
+const testLink = "1";
 
 const titlesData = [{
   img: testImage,
   name: testName,
-  link: testLink
+  link: testLink,
+  type: "Ранобэ",
+  year: 2022
 }, {
   img: testImage,
   name: `${testName}_1`,
-  link: testLink
+  link: "2",
+  type: "Сериал",
+  year: 2025
 }, {
   img: testImage,
   name: "Оооооооооооочень длинное название тайтла отправило меня в другой мир, где я стал библиотекарем собрания манги мультиверса",
-  link: testLink
+  link: "3",
+  type: "Новелла",
+  year: 2020
 }, {
   img: testImage,
   name: testName,
-  link: testLink
+  link: "testLink",
+  type: "Ранобэ",
+  year: 2022
 }, {
   img: testImage,
   name: testName,
-  link: testLink
+  link: testLink,
+  type: "Ранобэ",
+  year: 2022
 }, {
   img: testImage,
   name: testName,
-  link: testLink
+  link: testLink,
+  type: "Ранобэ",
+  year: 2022
 }, {
   img: testImage,
   name: testName,
-  link: testLink
+  link: testLink,
+  type: "Ранобэ",
+  year: 2022
 }, {
   img: testImage,
   name: testName,
-  link: testLink
+  link: testLink,
+  type: "Ранобэ",
+  year: 2022
 }, {
   img: testImage,
   name: testName,
-  link: testLink
+  link: testLink,
+  type: "Ранобэ",
+  year: 2022
 }, ]
 
 </script>
@@ -52,5 +70,6 @@ const titlesData = [{
 .titles-list-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px 30px;
 }
 </style>
