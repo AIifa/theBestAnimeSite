@@ -36,7 +36,9 @@
             <span> Рейтинг </span> 
           </div>
           <div class="content-container">
-            <span>☆☆☆☆ Рейтинг: {{ titleData?.review }} </span>
+            <ReviewStars
+              :review="titleData?.review" 
+            />
           </div>
         </div>
 
@@ -53,7 +55,9 @@
           <div class="header-container"> 
             <span> Описание </span> 
           </div>
-          <span> {{ titleData?.description }} </span>
+          <div class="content-container">
+            <span> {{ titleData?.description }} </span>
+          </div>
         </div>
       </div>
 
@@ -61,7 +65,9 @@
         <div class="header-container"> 
           <span> Связанное </span> 
         </div>
-        <span> {{ titleData?.related }} </span>
+        <div class="content-container">
+          <span> {{ titleData?.related }} </span>
+        </div>
       </div>
 
       <div class="title-content-sidebar"></div>
@@ -91,7 +97,7 @@ const mockData: Title = {
   },
   description: 'Отгромыхали салюты и аплодисменты, заглохли радостные крики ликующей толпы, съеден торжественный ужин, награды получены: герои, долго и упорно шедшие к исполнению цели, добились своего. Зло побеждено, невинные спасены и... что дальше? Наверное, надо как-то возвращаться к мирной жизни, да? Подобным вопросом задаётся Фрирен — член команды, одолевшей Короля Демонов. Она не герой, а — маг, и не человек, а — эльф, практически ничего не роднит её с остальными членами группы, к тому же ей отмерен гораздо больший жизненный срок, и ей суждено пережить своих былых товарищей...',
   publisher: 'Издатель',
-  review: 8.8, // Рейтинг тайтла
+  review: 9.13, // Рейтинг тайтла
   related: 'связи', // Подумать как сделать
   authors: 'Авторы',
 };
@@ -143,6 +149,15 @@ onMounted(() => {
     display: flex;
   }
 }
+
+.content-description {
+  max-width: 500px;
+}
+
+.content-resources {
+  max-width: 500px;
+}
+
 .header-container {
   background-color: rgb(197, 196, 196);
   border-left: 5px solid grey;
