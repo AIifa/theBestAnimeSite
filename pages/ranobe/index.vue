@@ -1,5 +1,7 @@
 <template>
-  <div class="page" @click="async () => await navigateTo(`/ranobe/1`)">
+  <div class="page" 
+    
+  >
     <p>ranobe</p>
     <TitlesList />
   </div>

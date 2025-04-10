@@ -9,7 +9,8 @@ import testImage from '../assets/friren.webp';
 const testName = "Название крутого тайтла";
 const testLink = "ссылка";
 
-const titlesData = [{
+const titlesData = [
+  {
   img: testImage,
   name: testName,
   link: testLink
@@ -45,7 +46,13 @@ const titlesData = [{
   img: testImage,
   name: testName,
   link: testLink
-}, ]
+}, 
+{
+  img: testImage,
+  name: testName,
+  link: testLink
+}, 
+];
 
 </script>
 <style scoped lang="scss">
