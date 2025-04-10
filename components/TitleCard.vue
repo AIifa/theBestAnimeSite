@@ -1,8 +1,11 @@
 <template>
-  <div class="title-card">
+  <div class="title-card" :title="item.name" @click="async () => await navigateTo(`/ranobe/${item.link}`)">
     <img :src="item.img" :alt="item.name">
-    <p :title="item.name"><a :href="item.link">{{ item.name }}</a></p>
-    <!-- Тут еще строка, мб под тип контента (новелла/сериал/ваншот/етс) и год выпуска -->
+    <p class="title-name"><a>{{ item.name }}</a></p>
+    <div class="title-info">
+      <p>{{ item.type || "" }}</p>
+      <p>{{ item.year || "" }}</p>
+    </div>
   </div>
 </template>
 
@@ -13,16 +16,16 @@ const props = defineProps(['item']);
 
 <style scoped lang="scss">
 .title-card {
-  margin-right: 30px;
   max-width: 200px;
+  cursor: pointer;
 
   img {
     width: 200px;
     height: 300px;
     object-fit: cover;
   }
-  p {
-    margin-top: 0px;
+  p.title-name {
+    margin: 0px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -31,10 +34,15 @@ const props = defineProps(['item']);
       color: #5d266b;
       font-weight: bolder;
       text-decoration: none;
+    }
+  }
 
-      // white-space: nowrap;
-      // text-overflow: ellipsis;
-      // overflow: hidden;
+  .title-info {
+    display: flex;
+    justify-content: space-between;
+    p {
+      margin: 0px;
+      font-size: smaller;
     }
   }
 }

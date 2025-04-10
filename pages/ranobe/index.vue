@@ -1,7 +1,5 @@
 <template>
-  <div class="page" 
-    
-  >
+  <div class="page">
     <p>ranobe</p>
     <TitlesList />
   </div>
