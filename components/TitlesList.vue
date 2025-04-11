@@ -10,7 +10,8 @@ import testImage from '../assets/friren.webp';
 const testName = "Название крутого тайтла";
 const testLink = "1";
 
-const titlesData = [{
+const titlesData = [
+  {
   img: testImage,
   name: testName,
   link: testLink,
@@ -64,7 +65,13 @@ const titlesData = [{
   link: testLink,
   type: "Ранобэ",
   year: 2022
-}, ]
+}, 
+{
+  img: testImage,
+  name: testName,
+  link: testLink
+}, 
+];
 
 </script>
 <style scoped lang="scss">

@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       options: {
         target: 'esnext'
       }
-    }
+    },
   },
   vite: {
     css: {
