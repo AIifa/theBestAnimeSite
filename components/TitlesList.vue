@@ -1,4 +1,5 @@
 <template>
+  <Paginator :page-count="10" />
   <div class="titles-list-container">
     <TitleCard v-for="(item, index) in titlesData" :key="item.name + index" :item="item" />
   </div>
