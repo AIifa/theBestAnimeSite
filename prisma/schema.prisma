@@ -8,7 +8,103 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Title {
-  id   Int    @id @default(autoincrement()) @db.SmallInt
-  name String @db.Char
+model author {
+  id           Int            @id @default(autoincrement())
+  name         String         @db.VarChar(100)
+  title_author title_author[]
+}
+
+model genres_enum {
+  id                 Int                  @id @default(autoincrement())
+  name               String               @unique @db.VarChar(40)
+  information_genres information_genres[]
+}
+
+model information {
+  id                 Int                  @id @default(autoincrement())
+  type_id            Int?
+  volume             Int?
+  chapters           Int?
+  status_id          Int?
+  theme              String?
+  license            Int?
+  altname            String?
+  status_enum        status_enum?         @relation(fields: [status_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  title_type_enum    title_type_enum?     @relation(fields: [type_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  information_genres information_genres[]
+  title              title[]
+}
+
+model information_genres {
+  information_id Int
+  genre_id       Int
+  genres_enum    genres_enum @relation(fields: [genre_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  information    information @relation(fields: [information_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([information_id, genre_id])
+}
+
+model licences {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(100)
+}
+
+model publisher {
+  id              Int               @id @default(autoincrement())
+  name            String            @db.VarChar(100)
+  title_publisher title_publisher[]
+}
+
+model related_titles {
+  title_id                               Int
+  related_id                             Int
+  related                                title @relation("related", fields: [related_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  titles                                 title @relation("titles", fields: [title_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([title_id, related_id])
+}
+
+model status_enum {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique @db.VarChar(30)
+  information information[]
+}
+
+model title {
+  id                                              Int               @id @default(autoincrement())
+  information_id                                  Int?
+  name                                            String
+  engname                                         String?
+  image                                           String?
+  description                                     String?
+  review                                          Float?            @db.Real
+  titles                                          related_titles[]  @relation("titles")
+  related                                         related_titles[]  @relation("related")
+  information                                     information?      @relation(fields: [information_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  title_author                                    title_author[]
+  title_publisher                                 title_publisher[]
+}
+
+model title_author {
+  author_id Int
+  title_id  Int
+  author    author @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  title     title  @relation(fields: [title_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([author_id, title_id])
+}
+
+model title_publisher {
+  publisher_id Int
+  title_id     Int
+  publisher    publisher @relation(fields: [publisher_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  title        title     @relation(fields: [title_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([publisher_id, title_id])
+}
+
+model title_type_enum {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique @db.VarChar(40)
+  information information[]
 }

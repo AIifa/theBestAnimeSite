@@ -1,7 +1,11 @@
+DROP SCHEMA public CASCADE;
+
+CREATE SCHEMA public;
+
 CREATE TABLE genres_enum
 (
 	id SERIAL PRIMARY KEY,
-	name CHARACTER VARYING(40)
+	name CHARACTER VARYING(40) UNIQUE NOT NULL
 );
 INSERT INTO genres_enum (name) 
 VALUES 
@@ -11,7 +15,7 @@ VALUES
 CREATE TABLE title_type_enum
 (
 	id SERIAL PRIMARY KEY,
-	name CHARACTER VARYING(40)
+	name CHARACTER VARYING(40) UNIQUE NOT NULL
 );
 INSERT INTO title_type_enum (name) 
 VALUES 
@@ -22,7 +26,7 @@ VALUES
 CREATE TABLE status_enum
 (
 	id SERIAL PRIMARY KEY,
-	name CHARACTER VARYING(30)
+	name CHARACTER VARYING(30) UNIQUE NOT NULL
 );
 INSERT INTO status_enum (name) 
 VALUES 
@@ -32,19 +36,19 @@ VALUES
 CREATE TABLE licences
 (
 	id SERIAL PRIMARY KEY,
-	name CHARACTER VARYING(100)
+	name CHARACTER VARYING(100) NOT NULL
 );
 
 CREATE TABLE publisher
 (
 	id SERIAL PRIMARY KEY,
-	name CHARACTER VARYING(100)
+	name CHARACTER VARYING(100) NOT NULL
 );
 
 CREATE TABLE author
 (
 	id SERIAL PRIMARY KEY,
-	name CHARACTER VARYING(100)
+	name CHARACTER VARYING(100) NOT NULL
 );
 
 CREATE TABLE information
@@ -63,38 +67,37 @@ CREATE TABLE title
 (
 	id SERIAL PRIMARY KEY,
 	information_id INTEGER REFERENCES information (id),
-	name TEXT,
+	name TEXT NOT NULL,
 	engName TEXT,
 	image TEXT,
 	description TEXT,
-	review REAL,
-	related INTEGER REFERENCES title (id)
+	review REAL
 );
 
 CREATE TABLE related_titles
 (
-	id SERIAL PRIMARY KEY,
 	title_id INTEGER REFERENCES title (id),
-	related_title_id INTEGER REFERENCES title (id)
+	related_id INTEGER REFERENCES title (id),
+	PRIMARY KEY (title_id, related_id)
 );
 
 CREATE TABLE title_publisher
 (
-	id SERIAL PRIMARY KEY,
 	publisher_id INTEGER REFERENCES publisher (id),
-	title_id INTEGER REFERENCES title (id)
+	title_id INTEGER REFERENCES title (id),
+	PRIMARY KEY (publisher_id, title_id)
 );
 
 CREATE TABLE title_author
 (
-	id SERIAL PRIMARY KEY,
 	author_id INTEGER REFERENCES author (id),
-	title_id INTEGER REFERENCES title (id)
+	title_id INTEGER REFERENCES title (id),
+	PRIMARY KEY (author_id, title_id)
 );
 
 CREATE TABLE information_genres
 (
-	id SERIAL PRIMARY KEY,
 	information_id INTEGER REFERENCES information (id),
-	genre_id INTEGER REFERENCES genres_enum (id)
+	genre_id INTEGER REFERENCES genres_enum (id),
+	PRIMARY KEY (information_id, genre_id)
 );
